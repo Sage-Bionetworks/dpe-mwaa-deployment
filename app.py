@@ -10,7 +10,7 @@ from mwaairflow.mwaairflow_stack import MWAAirflowStack
 import helpers
 
 app = core.App(context=helpers.get_deployment_context())
-  
+
 MWAAirflowStack(
     app,
     "MWAAirflowStack"

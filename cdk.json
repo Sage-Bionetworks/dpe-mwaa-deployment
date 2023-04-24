@@ -9,22 +9,22 @@
     "@aws-cdk/aws-kms:defaultKeyPolicies": true,
     "@aws-cdk/aws-s3:grantWriteWithoutAcl": true,
     "environments": {
-	    "dev": {
-	     "AWS_DEFAULT_REGION": "us-east-1",
-	     "TAGS": {
-	        "CostCenter": "NO PROGRAM / 000000",
-	        "OwnerEmail": "thomas.yu@sagebase.org"
-	      },
-	      "cidr": "172.45.0.0/24"
-	    },
-	    "prod": {
-	      "AWS_DEFAULT_REGION": "us-east-1",
-	      "TAGS": {
-	        "CostCenter": "NO PROGRAM / 000000",
-	        "OwnerEmail": "thomas.yu@sagebase.org"
-	      },
-	      "cidr": "172.46.0.0/24"
-	    }
+        "dev": {
+         "AWS_DEFAULT_REGION": "us-east-1",
+         "TAGS": {
+            "CostCenter": "NO PROGRAM / 000000",
+            "OwnerEmail": "thomas.yu@sagebase.org"
+          },
+          "cidr": "172.45.0.0/24"
+        },
+        "prod": {
+          "AWS_DEFAULT_REGION": "us-east-1",
+          "TAGS": {
+            "CostCenter": "NO PROGRAM / 000000",
+            "OwnerEmail": "thomas.yu@sagebase.org"
+          },
+          "cidr": "172.46.0.0/24"
+        }
     }
   }
 }

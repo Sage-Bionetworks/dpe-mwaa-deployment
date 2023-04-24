@@ -28,7 +28,7 @@ class MWAAirflowStack(core.Stack):
             self.cidr = self.node.try_get_context("cidr")
             self.tags = self.node.try_get_context("TAGS")
             self.vpc = VpcStack(
-                self, construct_id="MWAAVpcStack", cidr=self.cidr, self.tags, **kwargs
+                self, construct_id="MWAAVpcStack", cidr=self.cidr, tags=self.tags, **kwargs
             ).vpc
         else:
             self.vpc = ec2.Vpc.from_lookup(self, "MWAAVPC", vpc_id=self.vpc_id)

@@ -30,4 +30,4 @@ class VpcStack(core.NestedStack):
 
         # Tag all resources in this Stack's scope with context tags
         for key, value in tags.items():
-        	Tags.of(scope).add(key, value)
+            Tags.of(scope).add(key, value)

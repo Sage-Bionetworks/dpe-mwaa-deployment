@@ -9,7 +9,7 @@ A sample Dag using the SalesforceToS3Operator using "batch" mode and field selec
 This dag imports, in the target s3 bucket, the last 6 months of the opportunity object generating one file per month.
 It also filters the columns, keeping only the following ones: 'id', 'isdeleted', 'accountid', 'name', 'stagename', 'amount'
 
-### Prerequisites 
+### Prerequisites
 
 Before using this dag, you must have:
 * an operational airflow environment (by using the provided cdk construct)
@@ -18,11 +18,5 @@ Before using this dag, you must have:
 * An Airflow AWS connection with name "aws_connection" (the AWS role associated with the connection will need to have access to the target S3 Bucket).
 * A Variable with name "bucket_name" with the name of the target S3 bucket as value.
 
-### Source file 
-salesforce_to_s3.py 
-
-
-
-
-
-
+### Source file
+salesforce_to_s3.py
