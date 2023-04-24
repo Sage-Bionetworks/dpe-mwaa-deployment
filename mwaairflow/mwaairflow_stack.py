@@ -6,7 +6,7 @@
 from aws_cdk import (
     core,
     aws_ec2 as ec2,
-    Tags)
+    core.Tags as Tags)
 
 from .nested_stacks.environment import AirflowEnvironmentStack
 from .nested_stacks.project import AirflowProjectStack
