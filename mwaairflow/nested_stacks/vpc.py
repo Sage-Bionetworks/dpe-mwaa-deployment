@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT-0
 #
 
-from aws_cdk import core, aws_ec2 as ec2
+from aws_cdk import core, aws_ec2 as ec2, Tags
 
 
 class VpcStack(core.NestedStack):
