@@ -2,8 +2,8 @@ import json
 import pytest
 
 from aws_cdk import core
-from mwaairflow.mwaairflow_stack import MwaairflowStack
 import helpers
+from mwaairflow.mwaairflow_stack import MwaairflowStack
 
 def get_template():
     app = core.App(context=helpers.get_deployment_context())
