@@ -6,3 +6,4 @@ dist/
 .venv
 *pyc
 mwaairflow/mwaairflow.egg-info/
+.project
