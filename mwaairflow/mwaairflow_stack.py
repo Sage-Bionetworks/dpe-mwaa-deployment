@@ -3,10 +3,7 @@
 # SPDX-License-Identifier: MIT-0
 #
 
-from aws_cdk import (
-    core,
-    aws_ec2 as ec2,
-    core.Tags as Tags)
+from aws_cdk import (core, aws_ec2 as ec2, core.Tags as Tags)
 
 from .nested_stacks.environment import AirflowEnvironmentStack
 from .nested_stacks.project import AirflowProjectStack
