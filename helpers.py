@@ -1,5 +1,4 @@
 import aws_cdk
-import config
 
 #
 # Stack configuration constants go in the cdk.json file which defined the 'context'.
