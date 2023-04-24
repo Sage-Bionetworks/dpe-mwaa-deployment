@@ -6,7 +6,7 @@ import aws_cdk
 # Extract the deployment specific environment from the larger 'context',
 # which will then be used to complement the base context
 #
-def get_deployment_context() -> Mapping:
+def get_deployment_context() -> dict:
   app = aws_cdk.core.App()
   context = app.node.try_get_context('env')
   if context is None:
