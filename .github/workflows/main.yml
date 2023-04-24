@@ -1,0 +1,57 @@
+
+name: main
+
+on:
+  pull_request:
+    branches: ['*']
+  push:
+    branches: ['*']
+
+concurrency: ci-${{ github.ref }}
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Static Analysis
+        uses: pre-commit/action@v3.0.0
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m pytest tests/ -s -v
+
+  synth-test-dev:
+    needs: tests
+    uses: "./.github/workflows/synth-test.yml"
+    with:
+      CONTEXT: dev
+
+  synth-test-prod:
+    needs: tests
+    uses: "./.github/workflows/synth-test.yml"
+    with:
+      CONTEXT: prod
+
+  cdk-deploy-dev:
+    if: ${{github.ref == 'refs/heads/dev'}}
+    needs: [tests, synth-test-dev]
+    uses: "./.github/workflows/aws-deploy.yml"
+    secrets: inherit
+    with:
+      CONTEXT: dev
+      ROLE_TO_ASSUME: arn:aws:iam::631692904429:role/sagebase-github-oidc-sage-ProviderRoledpemwaadeplo-1WMOA3PXXYS2T
+
+# Uncomment and fill out 'ROLE_TO_ASSUME' to deploy to prod
+#  cdk-deploy-prod:
+#    if: ${{github.ref == 'refs/heads/prod'}}
+#    needs: [tests, synth-test-prod]
+#    uses: "./.github/workflows/aws-deploy.yml"
+#    secrets: inherit
+#    with:
+#      CONTEXT: prod
+#      ROLE_TO_ASSUME: arn:aws:iam::<production-account-number>:role/<production-role-name>

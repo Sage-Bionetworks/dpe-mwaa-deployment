@@ -6,17 +6,14 @@
 #!/usr/bin/env python3
 import os
 from aws_cdk import core
-
 from mwaairflow.mwaairflow_stack import MWAAirflowStack
+import helpers
 
-app = core.App()
+app = core.App(context=helpers.get_deployment_context())
+  
 MWAAirflowStack(
     app,
-    "MWAAirflowStack",
-    env=core.Environment(
-        account=os.environ["CDK_DEFAULT_ACCOUNT"],
-        region=os.environ["CDK_DEFAULT_REGION"],
-    ),
+    "MWAAirflowStack"
 )
 
 app.synth()

@@ -8,7 +8,7 @@ from aws_cdk import core, aws_ec2 as ec2
 
 class VpcStack(core.NestedStack):
     def __init__(
-        self, scope: core.Construct, construct_id: str, cidr=None, env=None, **kwargs
+        self, scope: core.Construct, construct_id: str, cidr=None, tags=dict(), env=None, **kwargs
     ):
         super().__init__(scope, construct_id, **kwargs)
         self.vpc = ec2.Vpc(
@@ -27,3 +27,7 @@ class VpcStack(core.NestedStack):
             ],
             nat_gateways=1,
         )
+
+        # Tag all resources in this Stack's scope with context tags
+        for key, value in tags.items():
+        	Tags.of(scope).add(key, value)
