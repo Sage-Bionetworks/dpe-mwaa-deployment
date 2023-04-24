@@ -19,16 +19,16 @@ class MWAAirflowStack(core.Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         self.cidr = None
-        self.tags = None
+        self.stack_tags = None
         self.vpc_id = None
 
         # Try to get VPC ID
         self.vpc_id = self.node.try_get_context("vpcId")
         if not self.vpc_id:
             self.cidr = self.node.try_get_context("cidr")
-            self.tags = self.node.try_get_context("TAGS")
+            self.stack_tags = self.node.try_get_context("TAGS")
             self.vpc = VpcStack(
-                self, construct_id="MWAAVpcStack", cidr=self.cidr, tags=self.tags, **kwargs
+                self, construct_id="MWAAVpcStack", cidr=self.cidr, tags=self.stack_tags, **kwargs
             ).vpc
         else:
             self.vpc = ec2.Vpc.from_lookup(self, "MWAAVPC", vpc_id=self.vpc_id)
