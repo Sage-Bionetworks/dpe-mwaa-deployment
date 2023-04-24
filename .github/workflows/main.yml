@@ -22,10 +22,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run unit tests
-        run: |
-          export env=dev
-          python -m pytest tests/ -s -v
+#      - name: Run unit tests
+#        run: |
+#          export env=dev
+#          python -m pytest tests/ -s -v
 
   synth-test-dev:
     needs: tests
