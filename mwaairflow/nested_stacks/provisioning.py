@@ -199,7 +199,7 @@ class AirflowProvisioningStack(aws_cdk.NestedStack):
             shutil.copytree(
                 path,
                 dist_dir,
-                ignore=shutil.ignore_patterns(".*", "__pycache__", "cdk.out", "dist"),
+                ignore=shutil.ignore_patterns(".*", "__pycache__", "cdk.out", "dist", "node_modules"),
             )
             shutil.make_archive(f"code", "zip", dist_dir)
             shutil.move("code.zip", f"{dist_dir}/code.zip")
