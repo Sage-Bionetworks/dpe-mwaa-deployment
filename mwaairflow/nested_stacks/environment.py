@@ -330,7 +330,7 @@ class AirflowEnvironmentStack(aws_cdk.NestedStack):
     def get_subnet_ids(cls, vpc, subnet_ids_list):
         if not subnet_ids_list:
             subnet_ids = []
-            subnets = vpc.select_subnets(subnet_type=ec2.SubnetType.PRIVATE).subnets
+            subnets = vpc.select_subnets(subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS).subnets
             first_subnet = subnets[0]
             subnet_ids.append(first_subnet.subnet_id)
             for s in subnets:

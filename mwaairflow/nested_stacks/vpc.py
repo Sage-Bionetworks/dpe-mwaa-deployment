@@ -24,8 +24,8 @@ class VpcStack(aws_cdk.NestedStack):
                     subnet_type=ec2.SubnetType.PUBLIC, name="Public", cidr_mask=20
                 ),
                 ec2.SubnetConfiguration(
-                    subnet_type=ec2.SubnetType.PRIVATE, name="Private", cidr_mask=24
-                ),
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS, name="Private", cidr_mask=24
+                ), # choices are PRIVATE_WITH_EGRESS or PRIVATE_ISOLATED
             ],
             nat_gateways=1,
         )
