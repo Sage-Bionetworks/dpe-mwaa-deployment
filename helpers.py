@@ -7,7 +7,7 @@ import aws_cdk
 # which will then be used to complement the base context
 #
 def get_deployment_context() -> dict:
-  app = aws_cdk.core.App()
+  app = aws_cdk.App()
   context = app.node.try_get_context('env')
   if context is None:
     raise ValueError("ERROR: CDK 'env' context not provided.")

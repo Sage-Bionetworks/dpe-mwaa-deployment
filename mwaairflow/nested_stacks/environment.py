@@ -7,8 +7,9 @@ import os
 import zipfile
 import json
 
+import aws_cdk
+
 from aws_cdk import (
-    core,
     aws_iam as iam,
     aws_s3 as s3,
     aws_s3_deployment as s3deploy,
@@ -17,7 +18,7 @@ from aws_cdk import (
 )
 
 
-class AirflowEnvironmentStack(core.NestedStack):
+class AirflowEnvironmentStack(aws_cdk.NestedStack):
     def _zip_dir(self, dir_path, zip_path):
         zipf = zipfile.ZipFile(zip_path, mode="w")
         lendir_path = len(dir_path)
@@ -29,7 +30,7 @@ class AirflowEnvironmentStack(core.NestedStack):
 
     def __init__(
         self,
-        scope: core.Construct,
+        scope: aws_cdk.Construct,
         construct_id: str,
         vpc: ec2.IVpc,
         subnet_ids_list: str,
@@ -54,7 +55,7 @@ class AirflowEnvironmentStack(core.NestedStack):
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             versioned=True,
         )
-        core.CfnOutput(self, "MWAA_BUCKET", value=self.bucket.bucket_name)
+        aws_cdk.CfnOutput(self, "MWAA_BUCKET", value=self.bucket.bucket_name)
 
         # Create MWAA role
         role = iam.Role(
@@ -170,7 +171,7 @@ class AirflowEnvironmentStack(core.NestedStack):
                 )
             )
 
-        string_like = core.CfnJson(
+        string_like = aws_cdk.CfnJson(
             self,
             "ConditionJson",
             value={f"kms:ViaService": f"sqs.{self.region}.amazonaws.com"},
@@ -306,7 +307,7 @@ class AirflowEnvironmentStack(core.NestedStack):
             source_bucket_arn=self.bucket.bucket_arn,
             webserver_access_mode=access_mode,
         )
-        options = {"core.lazy_load_plugins": False}
+        options = {"aws_cdk.lazy_load_plugins": False}
         if secrets_backend == "SecretsManager":
             options.update(
                 {
@@ -319,8 +320,8 @@ class AirflowEnvironmentStack(core.NestedStack):
         mwaa_env.node.add_dependency(self.bucket)
         mwaa_env.node.add_dependency(plugins_deploy)
         mwaa_env.node.add_dependency(req_deploy)
-        core.CfnOutput(self, "MWAA_NAME", value=self.env_name)
-        core.CfnOutput(
+        aws_cdk.CfnOutput(self, "MWAA_NAME", value=self.env_name)
+        aws_cdk.CfnOutput(
             self, "user-custom-policy", value=managed_policy.managed_policy_arn
         )
 

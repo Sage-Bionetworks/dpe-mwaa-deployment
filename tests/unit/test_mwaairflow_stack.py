@@ -1,12 +1,12 @@
 import json
 import pytest
 
-from aws_cdk import core
+from aws_cdk import App
 import helpers
 from mwaairflow.mwaairflow_stack import MWAAirflowStack
 
 def get_template():
-    app = core.App(context={"cidr": "172.45.0.0/16", "TAGS": {"CostCenter": "NO PROGRAM / 000000"}})
+    app = App(context={"cidr": "172.45.0.0/16", "TAGS": {"CostCenter": "NO PROGRAM / 000000"}})
     MWAAirflowStack(app, "mwaairflow")
     return json.dumps(app.synth().get_stack("mwaairflow").template)
 

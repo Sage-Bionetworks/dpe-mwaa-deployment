@@ -5,8 +5,8 @@
 
 import os
 import shutil
+import aws_cdk
 from aws_cdk import (
-    core,
     aws_s3 as s3,
     aws_s3_deployment as s3d,
     aws_iam as iam,
@@ -17,10 +17,10 @@ from aws_cdk import (
 )
 
 
-class AirflowProjectStack(core.NestedStack):
+class AirflowProjectStack(aws_cdk.NestedStack):
     def __init__(
         self,
-        scope: core.Construct,
+        scope: aws_cdk.Construct,
         construct_id: str,
         mwaa_bucket: s3.Bucket,
         env=None,
@@ -40,7 +40,7 @@ class AirflowProjectStack(core.NestedStack):
             id=f"{self.package_name}MwaaProjectBucket",
             encryption=s3.BucketEncryption.S3_MANAGED,
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            removal_policy=core.RemovalPolicy.DESTROY,
+            removal_policy=aws_cdk.RemovalPolicy.DESTROY,
         )
 
         assets = s3d.BucketDeployment(

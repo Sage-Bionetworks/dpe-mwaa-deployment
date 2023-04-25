@@ -5,11 +5,11 @@
 
 #!/usr/bin/env python3
 import os
-from aws_cdk import core
+from aws_cdk import App
 from mwaairflow.mwaairflow_stack import MWAAirflowStack
 import helpers
 
-app = core.App(context=helpers.get_deployment_context())
+app = App(context=helpers.get_deployment_context())
 
 MWAAirflowStack(
     app,
