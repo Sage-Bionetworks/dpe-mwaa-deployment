@@ -39,14 +39,14 @@ jobs:
       # CDK v1 will end entirely on June 1, 2023. Migrate to AWS CDK
       # v2 to continue to get the latest features and fixes!
       - name: cdk deploy
-        uses: youyo/aws-cdk-github-actions@v2
+        uses: youyo/aws-cdk-github-actions@v1
         with:
           cdk_subcommand: 'acknowledge'
           cdk_args: '19836'
           actions_comment: false
 
       - name: cdk deploy
-        uses: youyo/aws-cdk-github-actions@v2
+        uses: youyo/aws-cdk-github-actions@v1
         with:
           cdk_subcommand: 'deploy'
           cdk_args: '--require-approval never --context env=${{ inputs.CONTEXT }} --progress events --debug'
