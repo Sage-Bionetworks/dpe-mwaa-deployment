@@ -15,19 +15,9 @@ setuptools.setup(
     package_dir={"": "mwaairflow"},
     packages=setuptools.find_packages(where="mwaairflow"),
     install_requires=[
-        "aws-cdk==2.76.0",
-        "aws-cdk.aws_iam==2.76.0",
-        "aws-cdk.aws_sqs==2.76.0",
-        "aws-cdk.aws_sns==2.76.0",
-        "aws-cdk.aws_sns_subscriptions==2.76.0",
-        "aws-cdk.aws_s3==2.76.0",
-        "aws-cdk.aws_mwaa==2.76.0",
-        "aws-cdk.aws_s3_deployment==2.76.0",
-        "aws-cdk.aws_codepipeline==2.76.0",
-        "aws-cdk.aws_codepipeline_actions==2.76.0",
-        "aws-cdk.aws_codebuild==2.76.0",
-        "aws-cdk.aws_codecommit==2.76.0",
-        "boto3",
+        "aws-cdk-lib>=2.0.0",
+        "constructs>=10.0.0",
+        "boto3"
     ],
     python_requires=">=3.6",
     classifiers=[
