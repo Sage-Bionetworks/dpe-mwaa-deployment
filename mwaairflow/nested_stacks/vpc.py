@@ -6,10 +6,11 @@
 import aws_cdk
 from aws_cdk import (aws_ec2 as ec2)
 from aws_cdk import Tags
+from constructs import Construct
 
 class VpcStack(aws_cdk.NestedStack):
     def __init__(
-        self, scope: aws_cdk.Construct, construct_id: str, cidr=None, tags=dict(), env=None, **kwargs
+        self, scope: Construct, construct_id: str, cidr=None, tags=dict(), env=None, **kwargs
     ):
         super().__init__(scope, construct_id, **kwargs)
         self.vpc = ec2.Vpc(

@@ -14,8 +14,9 @@ from aws_cdk import (
     aws_s3 as s3,
     aws_s3_deployment as s3deploy,
     aws_mwaa as mwaa,
-    aws_ec2 as ec2,
+    aws_ec2 as ec2
 )
+from constructs import Construct
 
 
 class AirflowEnvironmentStack(aws_cdk.NestedStack):
@@ -30,7 +31,7 @@ class AirflowEnvironmentStack(aws_cdk.NestedStack):
 
     def __init__(
         self,
-        scope: aws_cdk.Construct,
+        scope: Construct,
         construct_id: str,
         vpc: ec2.IVpc,
         subnet_ids_list: str,

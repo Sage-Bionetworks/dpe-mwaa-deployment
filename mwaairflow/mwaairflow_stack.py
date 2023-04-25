@@ -6,7 +6,7 @@
 import aws_cdk
 from aws_cdk import (aws_ec2 as ec2)
 from aws_cdk import Tags
-
+from constructs import Construct
 from .nested_stacks.environment import AirflowEnvironmentStack
 from .nested_stacks.project import AirflowProjectStack
 from .nested_stacks.vpc import VpcStack
@@ -14,7 +14,7 @@ from .nested_stacks.provisioning import AirflowProvisioningStack
 
 
 class MWAAirflowStack(aws_cdk.Stack):
-    def __init__(self, scope: aws_cdk.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         self.cidr = None

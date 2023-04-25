@@ -15,12 +15,12 @@ from aws_cdk import (
     aws_codecommit as codecommit,
     aws_codebuild as codebuild,
 )
-
+from constructs import Construct
 
 class AirflowProvisioningStack(aws_cdk.NestedStack):
     def __init__(
         self,
-        scope: aws_cdk.Construct,
+        scope: Construct,
         construct_id: str,
         vpc_id: str,
         cidr: str,
