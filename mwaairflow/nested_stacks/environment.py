@@ -8,7 +8,7 @@ import zipfile
 import json
 
 import aws_cdk
-
+from aws_cdk import Tags
 from aws_cdk import (
     aws_iam as iam,
     aws_s3 as s3,
@@ -42,6 +42,7 @@ class AirflowEnvironmentStack(aws_cdk.NestedStack):
         access_mode: str,
         secrets_backend: str,
         env=None,
+        tags=dict(),
         **kwargs,
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -325,6 +326,10 @@ class AirflowEnvironmentStack(aws_cdk.NestedStack):
         aws_cdk.CfnOutput(
             self, "user-custom-policy", value=managed_policy.managed_policy_arn
         )
+
+        # Tag all resources in this Stack's scope with context tags
+        for key, value in tags.items():
+            Tags.of(scope).add(key, value)
 
     @classmethod
     def get_subnet_ids(cls, vpc, subnet_ids_list):

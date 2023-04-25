@@ -54,11 +54,12 @@ class MWAAirflowStack(aws_cdk.Stack):
             max_workers=self.max_workers,
             access_mode=self.access_mode,
             secrets_backend=self.secrets_backend,
+            tags=self.stack_tags,
             **kwargs
         )
 
         project_stack = AirflowProjectStack(
-            self, construct_id="MWAAProjectStack", mwaa_bucket=mwaa_env.bucket, **kwargs
+            self, construct_id="MWAAProjectStack", mwaa_bucket=mwaa_env.bucket, tags=self.stack_tags, **kwargs
         )
 
         provisioning_stack = AirflowProvisioningStack(
@@ -67,7 +68,12 @@ class MWAAirflowStack(aws_cdk.Stack):
             vpc_id=self.vpc_id,
             cidr=self.cidr,
             mwaa_bucket=mwaa_env.bucket,
+            tags=self.stack_tags,
             **kwargs
         )
 
         provisioning_stack.add_dependency(project_stack)
+
+        # Tag all resources in this Stack's scope with context tags
+        for key, value in self.stack_tags.items():
+            Tags.of(scope).add(key, value)

@@ -6,6 +6,7 @@
 import os
 import shutil
 import aws_cdk
+from aws_cdk import Tags
 from aws_cdk import (
     aws_s3 as s3,
     aws_s3_deployment as s3d,
@@ -24,6 +25,7 @@ class AirflowProjectStack(aws_cdk.NestedStack):
         construct_id: str,
         mwaa_bucket: s3.Bucket,
         env=None,
+        tags=dict(),
         **kwargs,
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
@@ -241,6 +243,10 @@ class AirflowProjectStack(aws_cdk.NestedStack):
                 )
             ],
         )
+
+        # Tag all resources in this Stack's scope with context tags
+        for key, value in tags.items():
+            Tags.of(scope).add(key, value)
 
     @staticmethod
     def zip_directory(path):
