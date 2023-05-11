@@ -46,7 +46,7 @@ jobs:
     secrets: inherit
     with:
       CONTEXT: dev
-      ROLE_TO_ASSUME: arn:aws:iam::631692904429:role/sagebase-github-oidc-sage-ProviderRoledpemwaadeplo-1WMOA3PXXYS2T
+      ROLE_TO_ASSUME: arn:aws:iam::631692904429:role/sagebase-github-oidc-sage-bionetworks-dpe-airflow-infra
 
 # Uncomment and fill out 'ROLE_TO_ASSUME' to deploy to prod
 #  cdk-deploy-prod:
